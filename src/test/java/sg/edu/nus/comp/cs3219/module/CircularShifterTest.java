@@ -45,4 +45,11 @@ public class CircularShifterTest {
 		assertEquals("Hello World", afterShiftLineStorage.get(0).toString());
 		assertEquals("World Hello", afterShiftLineStorage.get(1).toString());
 	}
+
+	@Test
+	public void test2() {
+		// Add an additional test where the lines input contain ALL the ignored words.
+		inputLineStorage.addLine("the after");
+		assertEquals(0, afterShiftLineStorage.size());
+	}
 }
