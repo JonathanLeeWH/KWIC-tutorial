@@ -6,8 +6,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 
+import org.junit.rules.ExpectedException;
 import sg.edu.nus.comp.cs3219.model.LineStorage;
 
 public class CircularShifterTest {
@@ -46,10 +48,17 @@ public class CircularShifterTest {
 		assertEquals("World Hello", afterShiftLineStorage.get(1).toString());
 	}
 
+	@Rule
+	public ExpectedException exceptionRule = ExpectedException.none();
+
 	@Test
 	public void test2() {
 		// Add an additional test where the lines input contain ALL the ignored words.
 		inputLineStorage.addLine("the after");
 		assertEquals(0, afterShiftLineStorage.size());
+
+		// Since Junit 4 is used instead of Junit 5 assertThrows method is not available.
+		exceptionRule.expect(IndexOutOfBoundsException.class);
+		afterShiftLineStorage.get(0);
 	}
 }
